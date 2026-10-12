@@ -1,13 +1,14 @@
 using System;
 using System.Collections.Generic;
+using Client.Interfaces;
 using Client.Models;
 using Client.Repositories;
 
 namespace Client.Services;
 
-public class ProductServices
+public class ProductServices : IProductService
 {
-  public static List<Product> ListAllProducts()
+  public List<Product> List()
   {
     var storage = new Storage<Product>();
     var path = string.Concat(Environment.CurrentDirectory, "/Data/products.json");
@@ -16,4 +17,5 @@ public class ProductServices
     return products;
 
   }
+
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using Client.Interfaces;
 using Client.Models;
 using Client.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -9,11 +10,14 @@ namespace Client.ViewModels;
 
 public partial class ProductsViewModel : ViewModelBase
 {
+  private IProductService _service;
+
   [ObservableProperty]
   public partial ObservableCollection<Product> Products { get; set; } = [];
-  public ProductsViewModel()
+  public ProductsViewModel(IProductService service)
   {
     PageTitle = "Våra produkter";
+    _service = service;
     LoadProducts();
   }
 
@@ -33,7 +37,8 @@ public partial class ProductsViewModel : ViewModelBase
   {
     try
     {
-      Products = new ObservableCollection<Product>(ProductServices.ListAllProducts());
+      // var service = new ProductServices();
+      Products = new ObservableCollection<Product>(_service.List());
     }
     catch (Exception ex)
     {
