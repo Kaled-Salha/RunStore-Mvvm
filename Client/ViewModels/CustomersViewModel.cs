@@ -9,14 +9,19 @@ namespace Client.ViewModels;
 
 public partial class CustomersViewModel : ViewModelBase
 {
-  private ICustomerService _service;
+  private ICustomerService _customerService;
 
   [ObservableProperty]
   public partial ObservableCollection<Customer> Customers { get; set; } = [];
-  public CustomersViewModel(ICustomerService service)
+  public CustomersViewModel()
   {
     PageTitle = "Våra Kunder";
-    _service = service;
+    // LoadCustomers();
+  }
+  public CustomersViewModel(ICustomerService customerService)
+  {
+    PageTitle = "Våra Kunder";
+    _customerService = customerService;
     LoadCustomers();
   }
 
@@ -25,7 +30,7 @@ public partial class CustomersViewModel : ViewModelBase
     // var customers = CustomerServices.ListAllCustomers();
     // Customers = new ObservableCollection<Customer>(customers);
 
-    Customers = new ObservableCollection<Customer>(_service.List()); //One Liner
+    Customers = new ObservableCollection<Customer>(_customerService.List()); //One Liner
 
   }
 
