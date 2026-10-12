@@ -1,7 +1,9 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using Client.Models;
 using Client.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 
 namespace Client.ViewModels;
 
@@ -11,17 +13,33 @@ public partial class ProductsViewModel : ViewModelBase
   public partial ObservableCollection<Product> Products { get; set; } = [];
   public ProductsViewModel()
   {
-    PageTitle = "Våra Produkter";
+    PageTitle = "Våra produkter";
     LoadProducts();
   }
 
+  //  [RelayCommand]
+  //  private void Edit()
+  //  {
+  //      Console.WriteLine("Ändra uppgifter");
+  //  }
+
+  //  [RelayCommand]
+  //  private void Delete()
+  //  {
+  //      Console.WriteLine("Ta bort produkt");
+  //  }
+
   private void LoadProducts()
   {
-    // var products = ProductServices.ListAllProducts();
-    // Products = new ObservableCollection<Product>(products);
-
-    Products = new ObservableCollection<Product>(ProductServices.ListAllProducts()); //One Liner
+    try
+    {
+      Products = new ObservableCollection<Product>(ProductServices.ListAllProducts());
+    }
+    catch (Exception ex)
+    {
+      // Byts ut till en tjusig popup senare...
+      Console.WriteLine(ex.Message);
+    }
 
   }
-
 }
