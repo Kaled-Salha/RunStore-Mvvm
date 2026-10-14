@@ -8,7 +8,7 @@ using CommunityToolkit.Mvvm.Input;
 
 namespace Client.ViewModels;
 
-public partial class ProductsViewModel : ViewModelBase
+public partial class ProductsViewModel : PageViewModel
 {
   private IProductService _service;
 
@@ -16,8 +16,9 @@ public partial class ProductsViewModel : ViewModelBase
   public partial ObservableCollection<Product> Products { get; set; } = [];
   public ProductsViewModel(IProductService service)
   {
-    PageTitle = "Våra produkter";
     _service = service;
+    PageName = Helpers.ApplicationNameEnum.Products;
+    PageTitle = "Våra produkter";
     LoadProducts();
   }
 

@@ -7,7 +7,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace Client.ViewModels;
 
-public partial class CustomersViewModel : ViewModelBase
+public partial class CustomersViewModel : PageViewModel
 {
   private ICustomerService _customerService;
 
@@ -20,8 +20,11 @@ public partial class CustomersViewModel : ViewModelBase
   }
   public CustomersViewModel(ICustomerService customerService)
   {
-    PageTitle = "Våra Kunder";
+
     _customerService = customerService;
+    PageName = Helpers.ApplicationNameEnum.Customers;
+    PageTitle = "Våra Kunder";
+
     LoadCustomers();
   }
 
