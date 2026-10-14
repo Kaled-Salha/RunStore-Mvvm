@@ -16,14 +16,5 @@ public record class Product
   public int Price { get; set; }
 
 
-  public void Edit()
-  {
-    Console.WriteLine("Ändra produktuppgifter");
-  }
-
-  public void Delete()
-  {
-    Console.WriteLine("Ta bort produkten");
-  }
 
 }

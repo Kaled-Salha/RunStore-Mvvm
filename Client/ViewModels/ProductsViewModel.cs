@@ -21,17 +21,17 @@ public partial class ProductsViewModel : ViewModelBase
     LoadProducts();
   }
 
-  //  [RelayCommand]
-  //  private void Edit()
-  //  {
-  //      Console.WriteLine("Ändra uppgifter");
-  //  }
+  [RelayCommand]
+  private void Edit(string id)
+  {
+    Console.WriteLine("Ändra uppgifter" + id);
+  }
 
-  //  [RelayCommand]
-  //  private void Delete()
-  //  {
-  //      Console.WriteLine("Ta bort produkt");
-  //  }
+  [RelayCommand]
+  private void Delete(string id)
+  {
+    Console.WriteLine("Ta bort produkt" + id);
+  }
 
   private void LoadProducts()
   {
